@@ -1,19 +1,17 @@
 package model;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 @Entity @Model
 @NamedQueries({
         @NamedQuery(name="user.findByName",
-                query="SELECT u FROM User u WHERE u.username LIKE :username"),
-        @NamedQuery(name="user.getRecentTweets",
-                query="SELECT u FROM User u WHERE u.username LIKE :username")
+                query="SELECT u FROM User u WHERE u.username = :username"),
+        @NamedQuery(name="user.getRecentKweets",
+                query="SELECT u FROM User u WHERE u.username LIKE CONCAT('%',:username,'%')")
 })
 public class User {
 
@@ -32,17 +30,17 @@ public class User {
     @ManyToMany
     private List<User> followers;
     @ManyToMany
-    private List<Tweet> tweets;
+    private List<Kweet> kweets;
 
     public User() {
         this.avatarURL = "/default/placeholder.png";
-        this.tweets = new ArrayList<Tweet>();
+        this.kweets = new ArrayList<Kweet>();
         this.following = new ArrayList<User>();
         this.followers = new ArrayList<User>();
     }
 
-    public void addTweet(Tweet tweet){
-        tweets.add(tweet);
+    public void addTweet(Kweet kweet){
+        kweets.add(kweet);
     }
 
     public void follow(User user){
@@ -57,8 +55,8 @@ public class User {
             this.followers.add(user);
     }
 
-    public List<Tweet> getRecentTweets(int offset, int limit){
-        ArrayList<Tweet> result = new ArrayList<Tweet>(getTweets());
+    public List<Kweet> getRecentKweets(int offset, int limit){
+        ArrayList<Kweet> result = new ArrayList<Kweet>(getKweets());
 
         Collections.sort(result);
         if (result.size() >= offset + limit){
@@ -68,14 +66,14 @@ public class User {
         }
     }
 
-    public void likeTweet(Tweet tweet){
-        tweet.addLike(this);
+    public void likeKweet(Kweet kweet){
+        kweet.addLike(this);
     }
 
-    public List<Tweet> getTimelineTweets(int offset, int limit){
-        ArrayList<Tweet> result = new ArrayList<Tweet>(getTweets());
+    public List<Kweet> getTimelineKweets(int offset, int limit){
+        ArrayList<Kweet> result = new ArrayList<Kweet>(getKweets());
         for (User user: following) {
-            result.addAll(user.getTweets());
+            result.addAll(user.getKweets());
         }
 
         Collections.sort(result);
@@ -143,17 +141,21 @@ public class User {
         return followers;
     }
 
-    public List<Tweet> getTweets() {
-        return tweets;
+    public List<Kweet> getKweets() {
+        return kweets;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public boolean removeTweet(Tweet tweet){
-        if (this.tweets.contains(tweet))
-            return tweets.remove(tweet);
+    public boolean removeKweet(Kweet kweet){
+        if (this.kweets.contains(kweet))
+            return kweets.remove(kweet);
         return false;
+    }
+
+    public long getId() {
+        return id;
     }
 }

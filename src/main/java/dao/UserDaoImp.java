@@ -1,21 +1,20 @@
 package dao;
 
-import model.Tweet;
+import model.Kweet;
 import model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Created by Nino Vrijman
+ * Created by Nino Vrijman.
  */
 @Stateless @JPA
 public class UserDaoImp implements UserDao {
-    @PersistenceContext(unitName = "KwetterPU", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "KwetterPU")
     EntityManager em;
 
     public UserDaoImp() {
@@ -24,9 +23,7 @@ public class UserDaoImp implements UserDao {
 
     public User addUser(User user) {
         try{
-            em.getTransaction().begin();
             em.persist(user);
-            em.getTransaction().commit();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
             user = null;
@@ -34,11 +31,18 @@ public class UserDaoImp implements UserDao {
         return user;
     }
 
+    public List<User> getUsers() {
+        List<User> results = em
+                .createQuery("Select u from User u", User.class)
+                .getResultList();
+        return results;
+    }
+
     public User getUserByUsername(String username) {
         User user;
         try{
-            TypedQuery<User> query = em.createNamedQuery("user.findByUsername", User.class);
-            query.setParameter("useruame", username);
+            TypedQuery<User> query = em.createNamedQuery("user.findByName", User.class);
+            query.setParameter("username", username);
             user = query.getSingleResult();
         }catch (Exception ex){
             user = null;
@@ -46,14 +50,14 @@ public class UserDaoImp implements UserDao {
         return user;
     }
 
-    public List<Tweet> getRecentTweets(User user, int offset, int limit) {
-        List<Tweet> tweets;
+    public List<Kweet> getRecentKweets(User user, int offset, int limit) {
+        List<Kweet> kweets;
         try{
-            tweets = em.find(User.class, user).getRecentTweets(offset, limit);
+            kweets = em.find(User.class, user).getRecentKweets(offset, limit);
         }catch (Exception ex){
-            tweets = null;
+            kweets = null;
         }
-        return tweets;
+        return kweets;
     }
 
     public List<User> getFollowers(User user) {
@@ -76,13 +80,14 @@ public class UserDaoImp implements UserDao {
         return users;
     }
 
-    public List<Tweet> getTimelineTweets(User user, int offset, int limit) {
-        List<Tweet> tweets;
+    public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
+        List<Kweet> kweets;
         try{
-            tweets = em.find(User.class, user).getTimelineTweets(offset, limit);
+            System.out.println( em.find(User.class, user.getId()).getUsername());
+            kweets = em.find(User.class, user.getId()).getTimelineKweets(offset, limit);
         }catch (Exception ex){
-            tweets = null;
+            kweets = null;
         }
-        return tweets;
+        return kweets;
     }
 }

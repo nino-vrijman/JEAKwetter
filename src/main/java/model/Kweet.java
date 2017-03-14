@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Nino Vrijman
+ * Created by Nino Vrijman.
  */
 @Entity @Model
-public class Tweet implements Comparable<Tweet> {
+public class Kweet implements Comparable<Kweet> {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,16 +22,16 @@ public class Tweet implements Comparable<Tweet> {
     @OneToMany
     private List<User> likedBy;
 
-    public Tweet() {
+    public Kweet() {
     }
 
-    public Tweet(String content, User creater) {
+    public Kweet(String content, User createdBy) {
         this.content = content;
-        this.createdBy = creater;
+        this.createdBy = createdBy;
         this.date = new Date(System.currentTimeMillis());
         this.likedBy = new ArrayList();
 
-        creater.addTweet(this);
+        createdBy.addTweet(this);
     }
 
     public boolean addLike(User user){
@@ -42,7 +42,7 @@ public class Tweet implements Comparable<Tweet> {
         return false;
     }
 
-    public int compareTo(Tweet o) {
+    public int compareTo(Kweet o) {
         return getDate().compareTo(o.getDate());
     }
 
@@ -60,5 +60,40 @@ public class Tweet implements Comparable<Tweet> {
 
     public User getCreatedBy() {
         return createdBy;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setLikedBy(List<User> likedBy) {
+        this.likedBy = likedBy;
+    }
+
+    @Override
+    public String toString() {
+        return "Kweet{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", createdBy=" + createdBy +
+                ", likedBy=" + likedBy +
+                '}';
     }
 }

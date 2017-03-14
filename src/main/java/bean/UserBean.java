@@ -8,7 +8,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 /**
- * Created by Nino Vrijman on 6-3-2017.
+ * Created by Nino Vrijman.
  */
 @Named(value = "UserBean")
 @RequestScoped

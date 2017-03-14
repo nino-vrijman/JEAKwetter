@@ -1,8 +1,8 @@
 package service;
 
+import dao.JPA;
 import dao.UserDao;
-import dao.UserDaoColl;
-import model.Tweet;
+import model.Kweet;
 import model.User;
 
 import javax.ejb.Stateless;
@@ -10,15 +10,19 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by Nino Vrijman
+ * Created by Nino Vrijman.
  */
 @Stateless
 public class UserService {
-    @Inject
+    @Inject @JPA
     private UserDao userDao;
 
     public UserService() {
-        userDao = new UserDaoColl();
+
+    }
+
+    public List<User> getUsers() {
+        return userDao.getUsers();
     }
 
     public User addUser(User user) {
@@ -29,8 +33,8 @@ public class UserService {
         return userDao.getUserByUsername(username);
     }
 
-    public List<Tweet> getRecentTweets(User user, int offset, int limit) {
-        return userDao.getRecentTweets(user, offset, limit);
+    public List<Kweet> getRecentKweets(User user, int offset, int limit) {
+        return userDao.getRecentKweets(user, offset, limit);
     }
 
     public List<User> getFollowers(User user) {
@@ -41,7 +45,7 @@ public class UserService {
         return userDao.getFollowing(user);
     }
 
-    public List<Tweet> getTimelineTweets(User user, int offset, int limit) {
-        return userDao.getTimelineTweets(user, offset, limit);
+    public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
+        return userDao.getTimelineKweets(user, offset, limit);
     }
 }

@@ -1,24 +1,26 @@
 package dao;
 
-import model.Tweet;
+import model.Kweet;
 import model.User;
 
 import java.util.List;
 
 /**
- * Created by Nino Vrijman
+ * Created by Nino Vrijman.
  */
 public interface UserDao {
 
     User addUser(User user);
 
+    List<User> getUsers();
+
     User getUserByUsername(String username);
 
-    List<Tweet> getRecentTweets(User user, int offset, int limit);
+    List<Kweet> getRecentKweets(User user, int offset, int limit);
 
     List<User> getFollowers(User user);
 
     List<User> getFollowing(User user);
 
-    List<Tweet> getTimelineTweets(User user, int offset, int limit);
+    List<Kweet> getTimelineKweets(User user, int offset, int limit);
 }

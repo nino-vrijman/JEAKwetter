@@ -1,16 +1,15 @@
 package dao;
 
-import model.Tweet;
+import model.Kweet;
 import model.User;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Nino Vrijman
+ * Created by Nino Vrijman.
  */
 @Stateless @Default
 public class UserDaoColl implements UserDao {
@@ -28,6 +27,10 @@ public class UserDaoColl implements UserDao {
         return null;
     }
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
     public User getUserByUsername(String username) {
         for (User user : this.users) {
             if (user.getUsername() != null && user.getUsername().equals(username)) {
@@ -37,8 +40,8 @@ public class UserDaoColl implements UserDao {
         return null;
     }
 
-    public List<Tweet> getRecentTweets(User user, int offset, int limit) {
-        return user.getRecentTweets(offset, limit);
+    public List<Kweet> getRecentKweets(User user, int offset, int limit) {
+        return user.getRecentKweets(offset, limit);
     }
 
     public List<User> getFollowers(User user) {
@@ -49,7 +52,7 @@ public class UserDaoColl implements UserDao {
         return user.getFollowing();
     }
 
-    public List<Tweet> getTimelineTweets(User user, int offset, int limit) {
-        return user.getTimelineTweets(offset, limit);
+    public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
+        return user.getTimelineKweets(offset, limit);
     }
 }
