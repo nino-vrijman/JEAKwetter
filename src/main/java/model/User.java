@@ -1,5 +1,6 @@
 package model;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,8 +11,10 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name="user.findByName",
                 query="SELECT u FROM User u WHERE u.username = :username"),
+        @NamedQuery(name="user.getRecentKweets2",
+                query="SELECT u FROM User u WHERE u.username LIKE CONCAT('%',:username,'%')"),
         @NamedQuery(name="user.getRecentKweets",
-                query="SELECT u FROM User u WHERE u.username LIKE CONCAT('%',:username,'%')")
+                query="SELECT k FROM Kweet k WHERE k.createdBy = (SELECT u.id FROM User u WHERE u.username = :username)")
 })
 public class User {
 
@@ -25,11 +28,13 @@ public class User {
     private String websiteURL;
     private String username;
 
-    @ManyToMany
+    @OneToMany
     private List<User> following;
-    @ManyToMany
+
+    @OneToMany
     private List<User> followers;
-    @ManyToMany
+
+    @OneToMany
     private List<Kweet> kweets;
 
     public User() {

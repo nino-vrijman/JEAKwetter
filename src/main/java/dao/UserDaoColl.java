@@ -55,4 +55,8 @@ public class UserDaoColl implements UserDao {
     public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
         return user.getTimelineKweets(offset, limit);
     }
+
+    public void update(User user) {
+
+    }
 }

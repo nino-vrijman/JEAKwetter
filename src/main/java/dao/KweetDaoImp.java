@@ -30,7 +30,7 @@ public class KweetDaoImp implements KweetDao {
     public List<Kweet> findByContent(String query) {
         List kweets;
         try{
-            kweets = em.createQuery("SELECT t FROM Kweet t where t.content = :content")
+            kweets = em.createQuery("SELECT k FROM Kweet k where k.content = :content")
                         .setParameter("content", query).getResultList();
             return kweets;
         }catch (Exception ex){
@@ -44,8 +44,9 @@ public class KweetDaoImp implements KweetDao {
         Kweet kweet;
         try{
             kweet = new Kweet(content, user);
-            System.out.println(kweet.toString());
+            em.getTransaction().begin();
             em.persist(kweet);
+            em.getTransaction().commit();
         }catch (Exception ex){
             System.out.println("ERROR " + ex.getMessage());
             kweet = null;

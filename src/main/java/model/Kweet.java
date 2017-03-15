@@ -1,5 +1,6 @@
 package model;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,8 +18,9 @@ public class Kweet implements Comparable<Kweet> {
     private String content;
     private Date date;
 
-    @OneToOne
+    @ManyToOne
     private User createdBy;
+
     @OneToMany
     private List<User> likedBy;
 

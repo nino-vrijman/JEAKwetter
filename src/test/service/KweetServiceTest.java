@@ -30,7 +30,6 @@ public class KweetServiceTest extends TestCase {
         user1 = new User();
         kweet1 = kweetService.create("1 #TEST", user1);
 
-
         user2 = new User();
         kweet2 = kweetService.create("2 #TEST", user2);
 

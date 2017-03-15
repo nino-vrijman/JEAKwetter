@@ -23,4 +23,6 @@ public interface UserDao {
     List<User> getFollowing(User user);
 
     List<Kweet> getTimelineKweets(User user, int offset, int limit);
+
+    void update(User user);
 }

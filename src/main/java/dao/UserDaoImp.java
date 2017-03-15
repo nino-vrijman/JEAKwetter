@@ -22,8 +22,10 @@ public class UserDaoImp implements UserDao {
     }
 
     public User addUser(User user) {
-        try{
+        try {
+            em.getTransaction().begin();
             em.persist(user);
+            em.getTransaction().commit();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
             user = null;
@@ -53,7 +55,8 @@ public class UserDaoImp implements UserDao {
     public List<Kweet> getRecentKweets(User user, int offset, int limit) {
         List<Kweet> kweets;
         try{
-            kweets = em.find(User.class, user).getRecentKweets(offset, limit);
+            kweets = em.createNamedQuery("user.getRecentKweets").setParameter("username", user.getUsername()).getResultList();
+            //kweets = em.find(User.class, user).getRecentKweets(offset, limit);
         }catch (Exception ex){
             kweets = null;
         }
@@ -89,5 +92,11 @@ public class UserDaoImp implements UserDao {
             kweets = null;
         }
         return kweets;
+    }
+
+    public void update(User user) {
+        em.getTransaction().begin();
+        em.merge(user);
+        em.getTransaction().commit();
     }
 }

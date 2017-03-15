@@ -3,9 +3,13 @@ package dao;
 import junit.framework.TestCase;
 import model.Kweet;
 import model.User;
+import org.jglue.cdiunit.CdiRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+import util.DatabaseCleaner;
 
 import javax.persistence.Persistence;
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import static org.mockito.Mockito.mock;
  */
 public class UserDaoImpTest extends TestCase {
     UserDao userdao;
+    KweetDao kweetdao;
 
     User user1;
     User user2;
@@ -45,38 +50,73 @@ public class UserDaoImpTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
 
+        DatabaseCleaner cleaner = new DatabaseCleaner(Persistence.createEntityManagerFactory("KwetterPU").createEntityManager());
+        cleaner.clean();
+
         userdao = new UserDaoImp();
+        kweetdao = new KweetDaoImp();
         ((UserDaoImp)userdao).em = Persistence.createEntityManagerFactory("KwetterPU").createEntityManager();
+        ((KweetDaoImp)kweetdao).em = Persistence.createEntityManagerFactory("KwetterPU").createEntityManager();
 
-        user1 = userdao.addUser(new User());
-        kweet1 = new Kweet("1 #TEST", user1);
+        user1 = new User();
+        user1.setUsername("Test1");
+        userdao.addUser(user1);
+        kweet1 = kweetdao.create("1 #TEST", user1);
+        userdao.update(user1);
 
-        user2 = userdao.addUser(new User());
-        kweet2 = new Kweet("2 #TEST", user2);
+        user2 = new User();
+        user2.setUsername("Test2");
+        userdao.addUser(user2);
+        kweet2 = kweetdao.create("2 #TEST", user2);
+        userdao.update(user2);
 
-        user3 = userdao.addUser(new User());
-        kweet3 = new Kweet("3 #TEST", user3);
+        user3 = new User();
+        user3.setUsername("Test3");
+        userdao.addUser(user3);
+        kweet3 = kweetdao.create("3 #TEST", user3);
+        userdao.update(user3);
 
-        user4 = userdao.addUser(new User());
-        kweet4 = new Kweet("4 #TEST", user4);
+        user4 = new User();
+        user4.setUsername("Test4");
+        userdao.addUser(user4);
+        kweet4 = kweetdao.create("4 #TEST", user4);
+        userdao.update(user4);
 
-        user5 = userdao.addUser(new User());
-        kweet5 = new Kweet("5 #TEST", user5);
+        user5 = new User();
+        user5.setUsername("Test5");
+        userdao.addUser(user5);
+        kweet5 = kweetdao.create("5 #TEST", user5);
+        userdao.update(user5);
 
-        user6 = userdao.addUser(new User());
-        kweet6 = new Kweet("6 #TEST", user6);
+        user6 = new User();
+        user6.setUsername("Test6");
+        userdao.addUser(user6);
+        kweet6 = kweetdao.create("6 #TEST", user6);
+        userdao.update(user6);
 
-        user7 = userdao.addUser(new User());
-        kweet7 = new Kweet("7 #TEST", user7);
+        user7 = new User();
+        user7.setUsername("Test7");
+        userdao.addUser(user7);
+        kweet7 = kweetdao.create("7 #TEST", user7);
+        userdao.update(user7);
 
-        user8 = userdao.addUser(new User());
-        kweet8 = new Kweet("8 #TEST", user8);
+        user8 = new User();
+        user8.setUsername("Test8");
+        userdao.addUser(user8);
+        kweet8 = kweetdao.create("8 #TEST", user8);
+        userdao.update(user8);
 
-        user9 = userdao.addUser(new User());
-        kweet9 = new Kweet("9 #TEST", user9);
+        user9 = new User();
+        user9.setUsername("Test9");
+        userdao.addUser(user9);
+        kweet9 = kweetdao.create("9 #TEST", user9);
+        userdao.update(user9);
 
-        user10 = userdao.addUser(new User());
-        kweet10 = new Kweet("10 #TEST", user10);
+        user10 = new User();
+        user10.setUsername("Test10");
+        userdao.addUser(user10);
+        kweet10 = kweetdao.create("10 #TEST", user10);
+        userdao.update(user10);
 
         user1.follow(user2);
         user1.follow(user3);
@@ -100,13 +140,9 @@ public class UserDaoImpTest extends TestCase {
 
     @Test
     public void testGetUserByUsername() throws Exception {
-        user1.setUsername("Peter Monroe");
-        user2.setUsername("Theo Hubers");
-        user8.setUsername("Hackerman");
-
-        assertEquals(user1, userdao.getUserByUsername("Peter Monroe"));
-        assertEquals(user2, userdao.getUserByUsername("Theo Hubers"));
-        assertEquals(user8, userdao.getUserByUsername("Hackerman"));
+        assertEquals(user1, userdao.getUserByUsername("Test1"));
+        assertEquals(user2, userdao.getUserByUsername("Test2"));
+        assertEquals(user8, userdao.getUserByUsername("Test8"));
         assertEquals(null, userdao.getUserByUsername("Herman"));
     }
 

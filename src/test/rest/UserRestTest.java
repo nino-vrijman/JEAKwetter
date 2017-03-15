@@ -69,7 +69,7 @@ public class UserRestTest extends TestCase {
         assertEquals("username1", resource.getUsername());
     }
 
-    public void testGetTweet() throws Exception {
+    public void testGetKweet() throws Exception {
         HttpUriRequest request = new HttpGet("http://localhost:8080/kwetter/API/tweets/TWEETCONTENT1");
         HttpResponse  httpResponse = HttpClientBuilder.create().build().execute(request);
 
@@ -85,7 +85,6 @@ public class UserRestTest extends TestCase {
         List<Kweet> resource = mapper.readValue(httpResponse.getEntity().getContent(), TypeFactory.defaultInstance().constructCollectionType(List.class, Kweet.class));
 
         assertEquals(1, resource.size());
-
     }
 
 }
