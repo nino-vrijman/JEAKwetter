@@ -14,10 +14,10 @@ public class DatabaseCleaner {
     public void clean() throws SQLException {
         em.getTransaction().begin();
 
-        em.createNativeQuery("DELETE FROM user_tweet").executeUpdate();
-        em.createNativeQuery("DELETE FROM tweet_user").executeUpdate();
+        em.createNativeQuery("DELETE FROM user_kweet").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet_user").executeUpdate();
         em.createNativeQuery("DELETE FROM user_user").executeUpdate();
-        em.createNativeQuery("DELETE FROM tweet").executeUpdate();
+        em.createNativeQuery("DELETE FROM kweet").executeUpdate();
         em.createNativeQuery("DELETE FROM user").executeUpdate();
 
         em.getTransaction().commit();

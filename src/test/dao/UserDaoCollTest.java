@@ -13,6 +13,8 @@ import java.util.List;
 public class UserDaoCollTest extends TestCase {
     UserDao userdao;
 
+    List<User> users;
+
     User user1;
     User user2;
     User user3;
@@ -39,35 +41,46 @@ public class UserDaoCollTest extends TestCase {
         super.setUp();
 
         userdao = new UserDaoColl();
+        users = new ArrayList<User>();
 
         user1 = userdao.addUser(new User());
+        users.add(user1);
         kweet1 = new Kweet("1 #TEST", user1);
 
         user2 = userdao.addUser(new User());
+        users.add(user2);
         kweet2 = new Kweet("2 #TEST", user2);
 
         user3 = userdao.addUser(new User());
+        users.add(user3);
         kweet3 = new Kweet("3 #TEST", user3);
 
         user4 = userdao.addUser(new User());
+        users.add(user4);
         kweet4 = new Kweet("4 #TEST", user4);
 
         user5 = userdao.addUser(new User());
+        users.add(user5);
         kweet5 = new Kweet("5 #TEST", user5);
 
         user6 = userdao.addUser(new User());
+        users.add(user6);
         kweet6 = new Kweet("6 #TEST", user6);
 
         user7 = userdao.addUser(new User());
+        users.add(user7);
         kweet7 = new Kweet("7 #TEST", user7);
 
         user8 = userdao.addUser(new User());
+        users.add(user8);
         kweet8 = new Kweet("8 #TEST", user8);
 
         user9 = userdao.addUser(new User());
+        users.add(user9);
         kweet9 = new Kweet("9 #TEST", user9);
 
         user10 = userdao.addUser(new User());
+        users.add(user10);
         kweet10 = new Kweet("10 #TEST", user10);
 
         user1.follow(user2);
@@ -84,8 +97,12 @@ public class UserDaoCollTest extends TestCase {
 
     }
 
-    public void testAddUser() throws Exception{
+    public void testAddUser() throws Exception {
         assertEquals(null, userdao.addUser(user1));
+    }
+
+    public void testGetUsers() throws Exception {
+        assertEquals(users, userdao .getUsers());
     }
 
     public void testGetUserByUsername() throws Exception {

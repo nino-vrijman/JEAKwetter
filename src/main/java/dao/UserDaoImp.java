@@ -83,7 +83,6 @@ public class UserDaoImp implements UserDao {
     public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
         List<Kweet> kweets;
         try{
-            System.out.println( em.find(User.class, user.getId()).getUsername());
             kweets = em.find(User.class, user.getId()).getTimelineKweets(offset, limit);
         }catch (Exception ex){
             kweets = null;
