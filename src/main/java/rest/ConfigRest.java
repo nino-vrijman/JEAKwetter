@@ -9,4 +9,5 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("API")
 public class ConfigRest extends Application {
+
 }

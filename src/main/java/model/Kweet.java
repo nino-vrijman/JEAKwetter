@@ -16,13 +16,13 @@ public class Kweet implements Comparable<Kweet> {
     private long id;
     private String content;
     private Date date;
-
     @OneToOne
     private User createdBy;
     @OneToMany
     private List<User> likedBy;
 
     public Kweet() {
+
     }
 
     public Kweet(String content, User createdBy) {

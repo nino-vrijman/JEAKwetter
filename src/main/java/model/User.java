@@ -24,7 +24,6 @@ public class User {
     private String avatarURL;
     private String websiteURL;
     private String username;
-
     @ManyToMany
     private List<User> following;
     @ManyToMany

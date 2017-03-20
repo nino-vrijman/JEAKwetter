@@ -14,7 +14,4 @@ public interface KweetDao {
     Kweet create(String content, User user);
 
     boolean remove(Kweet kweet);
-
-
-
 }
