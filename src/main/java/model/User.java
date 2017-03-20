@@ -32,6 +32,9 @@ public class User {
     @ManyToMany
     private List<Kweet> kweets;
 
+//    @ManyToMany(mappedBy = "User")
+//    private List<UserGroup> groups;
+
     public User() {
         this.avatarURL = "/default/placeholder.png";
         this.kweets = new ArrayList<Kweet>();
