@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JEAKwetter" />
+        <module name="kwetter" />
         <module name="KwetterJEA" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="JEAKwetter" target="1.5" />
+      <module name="kwetter" target="1.5" />
       <module name="KwetterJEA" target="1.5" />
     </bytecodeTargetLevel>
   </component>
