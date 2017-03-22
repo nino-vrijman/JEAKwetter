@@ -2,16 +2,20 @@ package service;
 
 import dao.JPA;
 import dao.KweetDao;
+import interceptor.TrendyKweet;
+import interceptor.TrendyKweetInterceptor;
 import model.Kweet;
 import model.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
  * Created by Nino Vrijman.
  */
+@Interceptors(TrendyKweetInterceptor.class)
 @Stateless
 public class KweetService {
     @Inject @JPA
@@ -45,6 +49,7 @@ public class KweetService {
      * @param user The user who created the kweet.
      * @return The newly created kweet.
      */
+    @TrendyKweet
     public Kweet create(String content, User user) {
         return kweetDao.create(content, user);
     }

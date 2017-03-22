@@ -3,6 +3,7 @@ model\Kweet.class
 model\User_.java
 service\UserService.class
 dao\UserDao.class
+interceptor\TrendyKweet.class
 dao\KweetDaoColl.class
 rest\ConfigRest.class
 dao\KweetDaoImp.class
@@ -17,6 +18,7 @@ model\UserGroup_.class
 util\DatabaseCleaner.class
 dao\UserDaoColl.class
 dao\UserDaoImp.class
+interceptor\TrendyKweetInterceptor.class
 model\Kweet_.java
 rest\UserRest.class
 model\UserGroup.class
