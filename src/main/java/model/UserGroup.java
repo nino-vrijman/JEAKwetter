@@ -23,7 +23,7 @@ public class UserGroup implements Serializable
     private List<User> users;
 
     public UserGroup() {
-        // Empty constructor for JPA
+
     }
 }
 

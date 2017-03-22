@@ -30,9 +30,9 @@ public class User {
     private List<User> followers;
     @ManyToMany
     private List<Kweet> kweets;
-
-//    @ManyToMany(mappedBy = "User")
-//    private List<UserGroup> groups;
+    private String password;
+    @ManyToMany(mappedBy = "users")
+    private List<UserGroup> groups;
 
     public User() {
         this.avatarURL = "/default/placeholder.png";
@@ -84,6 +84,12 @@ public class User {
         } else {
             return result.subList(offset, result.size());
         }
+    }
+
+    public boolean removeKweet(Kweet kweet){
+        if (this.kweets.contains(kweet))
+            return kweets.remove(kweet);
+        return false;
     }
 
     public String getName() {
@@ -151,13 +157,15 @@ public class User {
         return location;
     }
 
-    public boolean removeKweet(Kweet kweet){
-        if (this.kweets.contains(kweet))
-            return kweets.remove(kweet);
-        return false;
-    }
-
     public long getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
