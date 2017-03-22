@@ -4,4 +4,20 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
 	<display-name>kwetter</display-name>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>security_realm</realm-name>
+	</login-config>
+    
+	<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure Pages</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>regular_user</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
