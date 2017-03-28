@@ -20,4 +20,7 @@
             <role-name>regular_user</role-name>
         </auth-constraint>
     </security-constraint>
+    <welcome-file-list>
+       <welcome-file>profile.xhtml</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -28,7 +28,7 @@ public class User {
     private List<User> following;
     @ManyToMany
     private List<User> followers;
-    @ManyToMany
+    @OneToMany(mappedBy = "createdBy")
     private List<Kweet> kweets;
     private String password;
     @ManyToMany(mappedBy = "users")

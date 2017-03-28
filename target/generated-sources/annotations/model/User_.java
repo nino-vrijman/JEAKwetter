@@ -8,7 +8,7 @@ import model.Kweet;
 import model.User;
 import model.UserGroup;
 
-@Generated(value="EclipseLink-2.6.0.v20150330-rNA", date="2017-03-27T19:54:14")
+@Generated(value="EclipseLink-2.6.0.v20150330-rNA", date="2017-03-28T20:19:51")
 @StaticMetamodel(User.class)
 public class User_ { 
 

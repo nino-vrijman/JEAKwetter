@@ -26,19 +26,19 @@ public class KweetWriter implements ItemWriter {
 
     @Override
     public void writeItems(List<Object> items) throws Exception {
-        System.out.println("WRITE-ITEMS-HAS-BEEN-INVOKED");
+        System.out.println("Writing items!");
 
-        User testUser = userService.getUserByUsername("Batch Testuser");
+        User testUser = userService.getUserByUsername("nino");
         if (testUser == null) {
             testUser = new User();
-            testUser.setUsername("Batch Testuser");
+            testUser.setUsername("nino");
+            testUser.setPassword("nino");
             testUser = userService.addUser(testUser);
         }
 
         for (Object item : items) {
             InputKweet k = (InputKweet) item;
             kweetService.create(k.content, testUser);
-            System.out.println("KWEETSERVICE-CREATE-CALLED");
         }
     }
 

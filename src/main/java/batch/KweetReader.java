@@ -40,7 +40,7 @@ public class KweetReader implements ItemReader {
 
         fileName = jobContext.getProperties().getProperty("input_file");
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("../../WEB-INF/classes/META-INF/batch-jobs/" + fileName);
+        InputStream inputStream = classLoader.getResourceAsStream(fileName);
         parser = Json.createParser(inputStream);
 
         start = false;

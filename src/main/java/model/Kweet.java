@@ -16,7 +16,7 @@ public class Kweet implements Comparable<Kweet> {
     private long id;
     private String content;
     private Date date;
-    @OneToOne
+    @ManyToOne
     private User createdBy;
     @OneToMany
     private List<User> likedBy;

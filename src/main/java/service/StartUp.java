@@ -4,13 +4,12 @@ import javax.annotation.PostConstruct;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 /**
  * Created by Nino Vrijman on 27-3-2017.
  */
 @Singleton
-@Startup
+//@Startup
 public class StartUp {
 
     private long execID;
