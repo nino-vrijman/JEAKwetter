@@ -43,7 +43,8 @@ public class Kweet implements Comparable<Kweet> {
     }
 
     public int compareTo(Kweet o) {
-        return getDate().compareTo(o.getDate());
+        return o.getDate().compareTo(getDate());
+//        return getDate().compareTo(o.getDate());
     }
 
     public Date getDate() {

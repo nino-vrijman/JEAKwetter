@@ -8,48 +8,43 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <h:outputStylesheet library="css" name="kwetter.css"  />
+        <link rel="stylesheet" href="resources/css/kwetter.css"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
-        <title>Profile - ${userBean.user.getUsername()}</title>
+        <title>Kwetter - ${userBean.user.getUsername()}</title>
     </h:head>
     <f:metadata>
-        <f:event type="preRenderComponent" listener="${userBean.getCurrentUser()}"/>
+        <f:event type="preRenderComponent" listener="${userBean.loadCurrentUser()}"/>
+        <f:event type="preRenderComponent" listener="${timelineBean.loadCurrentUser()}"/>
     </f:metadata>
     <h:body>
         <div class="container">
             <div class="col-sm-6 col-sm-offset-3">
-                <h1>Profile</h1>
-                <div class="media">
-                    <div class="media-left">
-                        <img id="avatar" src="${userBean.getAvatarURL()}" alt="User avatar" width="50" height="50"/>
+                <h1>Kwetter</h1>
+                <div class="well well-sm media">
+                    <div class="media-left media-middle">
+                        <img class="userAvatar" src="~/../${userBean.getAvatarURL()}" alt="User avatar"/>
                     </div>
                     <div class="media-body media-middle">
-                        <h4 class="media-heading">${userBean.getUsername()}</h4>
-                        <p>${userBean.getBio()}</p>
+                        <div class="col-md-8">
+                            <h3 class="media-heading">${userBean.getUsername()}</h3>
+                            <h:outputText value="#{userBean.getBio()}"/>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <p>Followers: <h:outputText value="#{userBean.getFollowersAmount()}"/></p>
+                            <p>Following: <h:outputText value="#{userBean.getFollowingAmount()}"/></p>
+                        </div>
                     </div>
                 </div>
-                <h2>Kweets</h2>
-                <span>Amount: ${userBean.getUserKweets().size()} nullcheck: ${userBean.getUserKweets() == null}</span>
+                <h3>Kweets</h3>
                 List test:
-                <ul>
-                   <ui:repeat value="#{userBean.getUserKweets()}" var="kweet">
-                       <h:outputText value="#{kweet.getContent()}"/>
-                       <h:outputLabel value="#{kweet.getDate()}"/>
-                   </ui:repeat>
-                </ul>
-                DataTable test:
-                <h:dataTable value="#{userBean.getUserKweets()}" var="kweet">
-                    <h:column>
-                        <h:outputText value="#{kweet.getContent()}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputLabel value="#{kweet.getDate()}"/>
-                    </h:column>
-                </h:dataTable>
-                Single kweet test:
-                <p>#{userBean.getKweet().getContent()}</p>
+                <ui:repeat value="${userBean.getUserKweets()}" var="userKweet">
+                    <div class="kweet well well-sm">
+                       <p class="kweetContent">${userKweet.getContent()}</p>
+                       <span class="kweetDate">Posted on: ${userKweet.getDate()}</span>
+                    </div>
+                </ui:repeat>
             </div>
         </div>
     </h:body>

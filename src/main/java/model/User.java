@@ -10,8 +10,8 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name="user.findByName",
                 query="SELECT u FROM User u WHERE u.username = :username"),
-        @NamedQuery(name="user.getRecentKweets",
-                query="SELECT u FROM User u WHERE u.username LIKE CONCAT('%',:username,'%')")
+        @NamedQuery(name="user.findUsersByName",
+                query="SELECT u FROM User u WHERE u.username LIKE :username")
 })
 public class User {
 
@@ -24,9 +24,9 @@ public class User {
     private String avatarURL;
     private String websiteURL;
     private String username;
-    @ManyToMany
+    @OneToMany @JoinTable(name = "USER_FOLLOWING")
     private List<User> following;
-    @ManyToMany
+    @OneToMany @JoinTable(name = "USER_FOLLOWERS")
     private List<User> followers;
     @OneToMany(mappedBy = "createdBy")
     private List<Kweet> kweets;
@@ -35,7 +35,7 @@ public class User {
     private List<UserGroup> groups;
 
     public User() {
-        this.avatarURL = "/default/placeholder.png";
+        this.avatarURL = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png";
         this.kweets = new ArrayList<Kweet>();
         this.following = new ArrayList<User>();
         this.followers = new ArrayList<User>();

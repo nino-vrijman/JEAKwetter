@@ -16,6 +16,8 @@ public interface UserDao {
 
     User getUserByUsername(String username);
 
+    List<User> getUsersByUsername(String username);
+
     List<Kweet> getRecentKweets(User user, int offset, int limit);
 
     List<User> getFollowers(User user);

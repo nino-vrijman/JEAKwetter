@@ -46,6 +46,7 @@ public class KweetDaoImp implements KweetDao {
             kweet = new Kweet(content, user);
             System.out.println(kweet.toString());
             em.persist(kweet);
+            em.merge(user);
         }catch (Exception ex){
             System.out.println("ERROR " + ex.getMessage());
             kweet = null;

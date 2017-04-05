@@ -7,6 +7,7 @@ import model.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,6 +46,13 @@ public class UserService {
      */
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
+    }
+
+    public List<User> getUsersByUsername(String username) {
+        if (username.length() >= 3) {
+            return userDao.getUsersByUsername(username);
+        }
+        return Collections.emptyList();
     }
 
     /**

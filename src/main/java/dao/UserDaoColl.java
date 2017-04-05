@@ -40,6 +40,20 @@ public class UserDaoColl implements UserDao {
         return null;
     }
 
+    public List<User> getUsersByUsername(String username) {
+        List<User> users = new ArrayList<User>();
+
+        for (User user : this.users) {
+            if (user.getUsername() != null && user.getUsername().contains(username)) {
+                if (!users.contains(user)) {
+                    users.add(user);
+                }
+            }
+        }
+
+        return users;
+    }
+
     public List<Kweet> getRecentKweets(User user, int offset, int limit) {
         return user.getRecentKweets(offset, limit);
     }

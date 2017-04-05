@@ -1,5 +1,6 @@
 batch\KweetProcessor.class
 model\User_.class
+bean\TimelineBean.class
 model\Kweet.class
 service\UserService.class
 dao\UserDao.class

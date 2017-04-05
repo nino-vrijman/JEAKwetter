@@ -4,7 +4,7 @@ import model.Kweet;
 import model.User;
 import service.UserService;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Nino Vrijman.
  */
 @Named(value = "userBean")
-@RequestScoped
+@SessionScoped
 public class UserBean implements Serializable {
 
     @Inject
@@ -24,18 +24,26 @@ public class UserBean implements Serializable {
     private User user;
     private String username;
 
-    public void getCurrentUser() {
-        username = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        user = userService.getUserByUsername(username);
-    }
-
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getUsername() {
         String username = user == null ? "NO USERNAME AVAILABLE" : user.getUsername();
-        return user.getUsername();
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void loadCurrentUser() {
+        this.setUsername(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+        this.setUser(user = userService.getUserByUsername(username));
     }
 
     public String getAvatarURL() {
@@ -55,7 +63,17 @@ public class UserBean implements Serializable {
         return this.user.getKweets();
     }
 
-    public Kweet getKweet() {
-        return this.user.getKweets().get(0);
+    public int getFollowersAmount() {
+        if (this.user == null) {
+            return -1;
+        }
+        return this.user.getFollowers().size();
+    }
+
+    public int getFollowingAmount() {
+        if (this.user == null) {
+            return -1;
+        }
+        return this.user.getFollowing().size();
     }
 }

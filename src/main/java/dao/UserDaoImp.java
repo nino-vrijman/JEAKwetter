@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,15 +46,31 @@ public class UserDaoImp implements UserDao {
             query.setParameter("username", username);
             user = query.getSingleResult();
         }catch (Exception ex){
+            ex.printStackTrace();
             user = null;
         }
         return user;
+    }
+
+    public List<User> getUsersByUsername(String username) {
+        List<User> users;
+
+        try {
+            TypedQuery<User> query = em.createNamedQuery("user.findUsersByName", User.class);
+            query.setParameter("username", "%" + username + "%");
+            users = query.getResultList();
+        } catch (Exception ex) {
+            users = Collections.emptyList();
+        }
+
+        return users;
     }
 
     public List<Kweet> getRecentKweets(User user, int offset, int limit) {
         List<Kweet> kweets;
         try{
             kweets = em.find(User.class, user).getRecentKweets(offset, limit);
+            Collections.sort(kweets);
         }catch (Exception ex){
             kweets = null;
         }
