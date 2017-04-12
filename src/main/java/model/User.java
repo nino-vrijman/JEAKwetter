@@ -24,9 +24,9 @@ public class User {
     private String avatarURL;
     private String websiteURL;
     private String username;
-    @OneToMany @JoinTable(name = "USER_FOLLOWING")
+    @OneToMany(fetch = FetchType.EAGER) @JoinTable(name = "USER_FOLLOWING")
     private List<User> following;
-    @OneToMany @JoinTable(name = "USER_FOLLOWERS")
+    @OneToMany(fetch = FetchType.EAGER) @JoinTable(name = "USER_FOLLOWERS")
     private List<User> followers;
     @OneToMany(mappedBy = "createdBy")
     private List<Kweet> kweets;

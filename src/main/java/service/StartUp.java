@@ -17,6 +17,7 @@ public class StartUp {
     private static final long serialVersionUID = 3712686178567411830L;
 
     public StartUp() {
+
     }
 
     @PostConstruct

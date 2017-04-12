@@ -69,7 +69,7 @@ public class UserDaoImp implements UserDao {
     public List<Kweet> getRecentKweets(User user, int offset, int limit) {
         List<Kweet> kweets;
         try{
-            kweets = em.find(User.class, user).getRecentKweets(offset, limit);
+            kweets = em.find(User.class, user.getId()).getRecentKweets(offset, limit);
             Collections.sort(kweets);
         }catch (Exception ex){
             kweets = null;
@@ -80,7 +80,7 @@ public class UserDaoImp implements UserDao {
     public List<User> getFollowers(User user) {
         List<User> users;
         try{
-            users = em.find(User.class, user).getFollowers();
+            users = em.find(User.class, user.getId()).getFollowers();
         }catch (Exception ex){
             users = null;
         }
@@ -90,7 +90,7 @@ public class UserDaoImp implements UserDao {
     public List<User> getFollowing(User user) {
         List<User> users;
         try{
-            users = em.find(User.class, user).getFollowing();
+            users = em.find(User.class, user.getId()).getFollowing();
         }catch (Exception ex){
             users = null;
         }

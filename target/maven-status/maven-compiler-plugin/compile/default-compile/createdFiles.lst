@@ -19,11 +19,13 @@ bean\UserBean.class
 batch\KweetReader$1.class
 model\User.class
 model\UserGroup_.class
+rest\RestResponseFilter.class
 util\DatabaseCleaner.class
 dao\UserDaoColl.class
 service\StartUp.class
 batch\InputKweet.class
 dao\UserDaoImp.class
+service\AuthenticationService.class
 interceptor\TrendyKweetInterceptor.class
 rest\UserRest.class
 batch\KweetReader.class
