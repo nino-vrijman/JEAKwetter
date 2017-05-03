@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
         <!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
@@ -29,6 +30,26 @@
                     <h:commandLink value="Logout" action="#{timelineBean.logout()}" />
                 </h:form>
                 <div>
+                    <p>PrimeFaces search</p>
+                    <h:form>
+                        <h:panelGroup>
+                            <h:outputText value="Search: " />
+                            <h:inputText id="firstname" value="#{timelineBean.searchUsername}"/>
+                            <p:commandButton value="Search" styleClass="btn btn-primary" actionListener="#{timelineBean.findUsersByUsername()}" id="usernameSearch" update="pfSearchUser">
+
+                            </p:commandButton>
+                        </h:panelGroup>
+                        <h:panelGroup style="display:block;" id="pfSearchUser">
+                            <p:repeat value="#{timelineBean.foundUsers}" var="foundUser" offset="0" size="${timelineBean.foundUsers.size()}" step="10" varStatus="">
+                                <img class="userAvatar" src="${timelineBean.getUser().getAvatarURL()}" alt="User avatar"/>
+                                <h:outputText value="#{foundUser.getUsername()}" />
+                            </p:repeat>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+                <!--JSF Search-->
+                <div style="display: none;">
+                    <p>JSF search</p>
                     <h:form>
                         <h:commandLink action="#{timelineBean.findUsersByUsername()}">
                             <h:inputText value="#{timelineBean.searchUsername}"/>
@@ -38,15 +59,16 @@
                         <br/>
                         <h:panelGroup id="users">
                             <ui:repeat value="#{timelineBean.foundUsers}" var="foundUser">
-                                <img class="userAvatar" src="~/../${timelineBean.getUser().getAvatarURL()}" alt="User avatar"/>
+                                <img class="userAvatar" src="${timelineBean.getUser().getAvatarURL()}" alt="User avatar"/>
                                 <h:outputText value="#{foundUser.getUsername()}" />
                             </ui:repeat>
                         </h:panelGroup>
                     </h:form>
                 </div>
+                <!-- End JSF Search -->
                 <div class="well well-sm media">
                     <div class="media-left media-middle">
-                        <a href="profile.xhtml"><img class="userAvatar" src="~/../${timelineBean.getUser().getAvatarURL()}" alt="User avatar"/></a>
+                        <a href="profile.xhtml"><img class="userAvatar" src="${timelineBean.getUser().getAvatarURL()}" alt="User avatar"/></a>
                     </div>
                     <div class="media-body media-middle">
                         <div class="col-md-8">
@@ -63,11 +85,14 @@
                 <div class="well well-sm">
                     <h:form>
                         <h:inputText id="input" placeholder="What's happening?" value="#{timelineBean.newKweetContent}" />
-                        <h:commandButton style="display: block;" value="Submit" type="submit" action="#{timelineBean.createKweet()}"/>
+                        <p:commandButton type="submit" value="Submit" styleClass="btn btn-primary" actionListener="#{timelineBean.createKweet()}" update="timelineKweets" ajax="false">
+
+                        </p:commandButton>
+                        <h:commandButton style="display: none;" value="Submit" type="submit" action="#{timelineBean.createKweet()}"/>
                     </h:form>
                 </div>
                 <h3>Timeline</h3>
-                <ui:repeat value="#{timelineBean.getTimelineKweets()}" var="timelineKweet">
+                <ui:repeat id="timelineKweets" value="#{timelineBean.getTimelineKweets()}" var="timelineKweet">
                     <div class="kweet well well-sm">
                         <p class="kweetContent">#{timelineKweet.getContent()}</p>
                         <span class="kweetDate">Posted on: #{timelineKweet.getDate()}</span>

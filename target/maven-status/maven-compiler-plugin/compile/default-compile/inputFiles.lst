@@ -4,6 +4,7 @@ C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\model\Kweet
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\service\UserService.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\KweetDao.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\interceptor\TrendyKweet.java
+C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\websocket\SocketEndpoint.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\service\KweetService.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\model\User.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\UserDao.java
@@ -19,6 +20,7 @@ C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\rest\Config
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\rest\TweetRest.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\KweetDaoImp.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\batch\Checkpoint.java
+C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\model\KweetDTO.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\batch\InputKweet.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\JPA.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\UserDaoColl.java

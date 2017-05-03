@@ -2,6 +2,7 @@ batch\KweetProcessor.class
 model\User_.class
 bean\TimelineBean.class
 model\Kweet.class
+websocket\SocketEndpoint.class
 service\UserService.class
 dao\UserDao.class
 batch\KweetWriter.class
@@ -31,3 +32,4 @@ rest\UserRest.class
 batch\KweetReader.class
 model\UserGroup.class
 dao\JPA.class
+model\KweetDTO.class
