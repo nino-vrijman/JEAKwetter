@@ -106,4 +106,30 @@ public class UserDaoImp implements UserDao {
         }
         return kweets;
     }
+
+    @Override
+    public boolean followUser(User user, User userToFollow) {
+        user.follow(userToFollow);
+        try {
+            em.merge(user);
+            em.merge(userToFollow);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean unfollowUser(User user, User userToUnfollow) {
+        user.unfollow(userToUnfollow);
+        try {
+            em.merge(user);
+            em.merge(userToUnfollow);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }

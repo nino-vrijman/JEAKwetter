@@ -69,4 +69,14 @@ public class UserDaoColl implements UserDao {
     public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
         return user.getTimelineKweets(offset, limit);
     }
+
+    @Override
+    public boolean followUser(User user, User userToFollow) {
+        return false;
+    }
+
+    @Override
+    public boolean unfollowUser(User user, User userToUnfollow) {
+        return false;
+    }
 }

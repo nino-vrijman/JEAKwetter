@@ -94,4 +94,24 @@ public class UserService {
     public List<Kweet> getTimelineKweets(User user, int offset, int limit) {
         return userDao.getTimelineKweets(user, offset, limit);
     }
+
+    /**
+     * Lets a user follow another user.
+     * @param user The user who will follow another user.
+     * @param userToFollow The user who will be followed by another user.
+     * @return Whether or not the userToFollow has been successfully followed by the other user.
+     */
+    public boolean followUser(User user, User userToFollow) {
+        return userDao.followUser(user, userToFollow);
+    }
+
+    /**
+     * Lets a user unfollow another user.
+     * @param user The user who will unfollow another user.
+     * @param userToUnfollow The user who will be unfollowed by another user.
+     * @return Whether or not the user has successfully unfollowed the userToUnfollow.
+     */
+    public boolean unfollowUser(User user, User userToUnfollow) {
+        return userDao.unfollowUser(user, userToUnfollow);
+    }
 }

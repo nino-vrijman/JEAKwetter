@@ -25,6 +25,7 @@ util\DatabaseCleaner.class
 dao\UserDaoColl.class
 service\StartUp.class
 batch\InputKweet.class
+jms\JMSSender.class
 dao\UserDaoImp.class
 service\AuthenticationService.class
 interceptor\TrendyKweetInterceptor.class
@@ -32,4 +33,5 @@ rest\UserRest.class
 batch\KweetReader.class
 model\UserGroup.class
 dao\JPA.class
+bean\JMSBean.class
 model\KweetDTO.class

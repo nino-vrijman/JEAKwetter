@@ -25,4 +25,8 @@ public interface UserDao {
     List<User> getFollowing(User user);
 
     List<Kweet> getTimelineKweets(User user, int offset, int limit);
+
+    boolean followUser(User user, User userToFollow);
+
+    boolean unfollowUser(User user, User userToUnfollow);
 }

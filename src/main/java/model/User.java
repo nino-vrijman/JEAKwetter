@@ -52,9 +52,22 @@ public class User {
         }
     }
 
+    public void unfollow(User userToUnfollow) {
+        if (this.following.contains(userToUnfollow)) {
+            userToUnfollow.removeFollower(this);
+            this.following.remove(userToUnfollow);
+        }
+    }
+
     private void addFollower(User user){
         if(!this.followers.contains(user))
             this.followers.add(user);
+    }
+
+    private void removeFollower(User user) {
+        if (this.followers.contains(user)){
+            this.followers.remove(user);
+        }
     }
 
     public List<Kweet> getRecentKweets(int offset, int limit){

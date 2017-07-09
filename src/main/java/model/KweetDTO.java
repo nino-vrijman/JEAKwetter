@@ -43,6 +43,10 @@ public class KweetDTO {
         this.createdBy = createdBy;
     }
 
+    public KweetDTO() {
+
+    }
+
     public KweetDTO(Kweet kweet) {
         this.id = kweet.getId();
         this.content = kweet.getContent();

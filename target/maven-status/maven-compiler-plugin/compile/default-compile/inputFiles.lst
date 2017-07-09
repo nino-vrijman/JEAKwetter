@@ -2,9 +2,11 @@ C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\service\Aut
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\util\DatabaseCleaner.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\model\Kweet.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\service\UserService.java
+C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\bean\JMSBean.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\KweetDao.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\interceptor\TrendyKweet.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\websocket\SocketEndpoint.java
+C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\jms\JMSSender.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\service\KweetService.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\model\User.java
 C:\Users\Nino Vrijman\Fontys\Jaar 3\S6\JEA6\JEAKwetter\src\main\java\dao\UserDao.java
